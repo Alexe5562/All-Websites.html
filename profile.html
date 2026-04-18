@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Profile</div>
+    <nav class="nav-buttons">
+      <a href="index.html" class="nav-button">Welcome</a>
+      <a href="shop.html" class="nav-button">Shop</a>
+      <a href="portfolio.html" class="nav-button">Portfolio</a>
+      <a href="contact.html" class="nav-button">Contact</a>
+      <a href="profile.html" class="nav-button active">Profile</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Your Profile</h1>
+      <p>Log in to see your profile at the top of the page. When you log out, it disappears. Log back in later and your profile data stays saved.</p>
+    </section>
+
+    <section class="profile-panel">
+      <div class="card profile-top-card hidden" id="profileTop">
+        <div class="profile-avatar" id="profileAvatar">
+          <img id="avatarImg" class="profile-avatar-img hidden" alt="Profile photo" />
+          <span id="avatarCircle">ME</span>
+        </div>
+        <div>
+          <span class="status-badge">Logged in</span>
+          <h2 id="profileNameTop">Profile Name</h2>
+          <p id="profileEmailTop">email@example.com</p>
+        </div>
+        <button class="secondary-button" id="logoutButton">Logout</button>
+      </div>
+
+      <div class="card profile-details-card hidden" id="profileDetails">
+        <h2>Your saved profile</h2>
+        <div class="profile-info-grid">
+          <div class="profile-item">
+            <h3>Name</h3>
+            <p id="profileName">—</p>
+          </div>
+          <div class="profile-item">
+            <h3>Email</h3>
+            <p id="profileEmail">—</p>
+          </div>
+          <div class="profile-item">
+            <h3>Total spent</h3>
+            <p id="profileSpent">$0.00</p>
+          </div>
+        </div>
+
+        <div class="profile-bio">
+          <h3>About you</h3>
+          <p id="profileBioText">—</p>
+        </div>
+
+        <div class="profile-history">
+          <h3>Purchase history</h3>
+          <ul class="purchase-history-list" id="purchaseHistoryList">
+            <li>No purchases yet.</li>
+          </ul>
+        </div>
+
+        <div class="profile-update">
+          <h3>Update profile</h3>
+          <form id="updateForm">
+            <label for="updateName">Name</label>
+            <input id="updateName" type="text" placeholder="Your name" autocomplete="name" required />
+
+            <label for="updateBio">About</label>
+            <textarea id="updateBio" rows="4" placeholder="A short bio or favorite merch"></textarea>
+
+            <label for="updateImageInput">Profile image</label>
+            <input id="updateImageInput" type="file" accept="image/*" />
+
+            <button type="submit" class="button-link">Save changes</button>
+            <p class="success-message hidden" id="updateSuccess">Profile saved successfully.</p>
+            <p class="error-message hidden" id="updateError">Please enter your name before saving.</p>
+          </form>
+        </div>
+      </div>
+
+      <div class="card auth-card" id="authCard">
+        <div>
+          <h2 id="authTitle">Log in to access your profile</h2>
+          <p class="muted-text" id="authHelp">If you've already created a profile, use your saved email and password.</p>
+        </div>
+        <form id="authForm">
+          <div class="form-grid" id="createFields">
+            <label for="nameInput">Name</label>
+            <input id="nameInput" type="text" placeholder="Your name" autocomplete="name" />
+            <label for="bioInput">About</label>
+            <textarea id="bioInput" rows="4" placeholder="A short bio or favorite merch"></textarea>
+            <label for="imageInput">Profile image</label>
+            <input id="imageInput" type="file" accept="image/*" />
+          </div>
+
+          <label for="emailInput">Email</label>
+          <input id="emailInput" type="email" placeholder="you@example.com" autocomplete="email" required />
+
+          <label for="passwordInput">Password</label>
+          <input id="passwordInput" type="password" placeholder="Choose a password" autocomplete="current-password" required />
+
+          <div class="form-actions">
+            <button type="submit" class="button-link" id="authSubmit">Create Profile</button>
+            <span class="muted-text" id="authHint"></span>
+          </div>
+          <p class="error-message hidden" id="authError"></p>
+        </form>
+      </div>
+
+    </section>
+
+
+    <section class="button-group">
+      <a href="index.html" class="button-link">Welcome</a>
+      <a href="shop.html" class="button-link">Shop</a>
+      <a href="portfolio.html" class="button-link">Portfolio</a>
+      <a href="contact.html" class="button-link">Contact</a>
+    </section>
+
+    <div class="modal-overlay hidden" id="logoutModal" aria-hidden="true">
+      <div class="modal-card">
+        <h3>Confirm logout</h3>
+        <p>Do you really want to log out ?</p>
+        <div class="modal-actions">
+          <button type="button" class="button-link" id="confirmLogoutYes">Yes</button>
+          <button type="button" class="secondary-button" id="confirmLogoutNo">No</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Contact</div>
+    <nav class="nav-buttons">
+      <a href="index.html" class="nav-button">Welcome</a>
+      <a href="shop.html" class="nav-button">Shop</a>
+      <a href="portfolio.html" class="nav-button">Portfolio</a>
+      <a href="contact.html" class="nav-button active">Contact</a>
+      <a href="profile.html" class="nav-button">Profile</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Get in Touch</h1>
+      <p>Questions about merch, custom orders, or collaborations? Send a message.</p>
+    </section>
+
+    <section class="contact-card">
+      <div>
+        <h2>Contact Info</h2>
+        <p>Email: gaouimdamine@gmail.com</p>
+        <p>Phone: +(212) 620-644935</p>
+      </div>
+      <form id="contactForm">
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Your name" required />
+
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="you@example.com" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" placeholder="Tell me more..."></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <section class="button-group">
+      <a href="index.html" class="button-link">Welcome</a>
+      <a href="shop.html" class="button-link">Shop</a>
+      <a href="portfolio.html" class="button-link">Portfolio</a>
+      <a href="contact.html" class="button-link">Contact</a>
+      <a href="profile.html" class="button-link">Profile</a>
+    </section>
+  </main>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      alert('Thank you! This contact form is a static demo and does not submit data yet.');
+    });
+  </script>
+</body>
+</html>

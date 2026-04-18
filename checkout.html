@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Checkout</div>
+    <nav class="nav-buttons">
+      <a href="index.html" class="nav-button">Welcome</a>
+      <a href="shop.html" class="nav-button">Shop</a>
+      <a href="portfolio.html" class="nav-button">Portfolio</a>
+      <a href="contact.html" class="nav-button">Contact</a>
+      <a href="profile.html" class="nav-button">Profile</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Review your order</h1>
+      <p>Confirm your purchase details before returning to the merch collection.</p>
+    </section>
+
+    <section class="checkout-card" id="checkoutCard">
+      <div class="checkout-summary">
+        <h2>Your Cart</h2>
+        <p id="cartCount" class="cart-count">0 items in cart</p>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="checkout-price">
+          <span>Total</span>
+          <strong id="checkoutTotal">$0.00</strong>
+        </div>
+      </div>
+
+      <div class="checkout-actions">
+        <button class="button-link" id="confirmButton">Confirm Purchase</button>
+        <button class="secondary-button" id="backButton">Back to Shop</button>
+      </div>
+
+      <p class="success-message hidden" id="checkoutSuccess">Purchase confirmed! Your cart has been cleared.</p>
+      <p class="error-message hidden" id="checkoutError">Your cart is empty. Add items from the shop.</p>
+    </section>
+  </main>
+
+  <script src="checkout.js"></script>
+</body>
+</html>
