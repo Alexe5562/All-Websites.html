@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECLox | Neon Maze</title>
+    <link rel="icon" href="https://yt3.googleusercontent.com/eLhH2cQa1E5KteF1WOgiIsof7XLLkQ-L1lYUMt5mzJe3RX_5qNqJiKJRRYg28S0ukP5XfwTF0O8=s160-c-k-c0x00ffffff-no-rj">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="glass-card page-card game-page-card">
+        <div class="nav-row">
+          <a class="ghost-button" href="games.html">Back to games</a>
+          <span class="badge">Live game</span>
+        </div>
+        <p class="eyebrow">Real game</p>
+        <h1>Neon Maze</h1>
+        <p class="subtle">Guide the glowing runner through the neon path. Each correct move lights up another tile.</p>
+        <div class="game-arena" id="arena"> </div>
+        <p class="small-note" id="gameStatus">Collect 5 glowing tiles to win the run.</p>
+        <button class="cta-button" id="playBtn" type="button">Start game</button>
+      </section>
+    </main>
+    <script>
+      const arena = document.getElementById('arena');
+      const status = document.getElementById('gameStatus');
+      const playBtn = document.getElementById('playBtn');
+      let score = 0;
+      let timer;
+      function createTile() {
+        arena.innerHTML = '';
+        for (let i = 0; i < 9; i += 1) {
+          const tile = document.createElement('button');
+          tile.className = 'maze-tile';
+          tile.textContent = i + 1;
+          tile.addEventListener('click', () => {
+            if (tile.classList.contains('active')) {
+              score += 1;
+              status.textContent = `Great! You collected ${score} tile(s).`;
+              tile.classList.remove('active');
+              if (score >= 5) {
+                clearInterval(timer);
+                status.textContent = 'You won Neon Maze!';
+              }
+            } else {
+              status.textContent = 'Try the glowing tile only.';
+            }
+          });
+          arena.appendChild(tile);
+        }
+        const activeIndex = Math.floor(Math.random() * 9);
+        arena.children[activeIndex].classList.add('active');
+        arena.children[activeIndex].textContent = '★';
+      }
+      playBtn.addEventListener('click', () => {
+        score = 0;
+        status.textContent = 'Collect 5 glowing tiles to win the run.';
+        createTile();
+        clearInterval(timer);
+        timer = setInterval(() => {
+          createTile();
+        }, 1200);
+      });
+    </script>
+  </body>
+</html>

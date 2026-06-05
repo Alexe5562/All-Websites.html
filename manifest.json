@@ -1,0 +1,25 @@
+{
+  "name": "ECLox",
+  "short_name": "ECLox",
+  "description": "ECLox learning and gaming app",
+  "start_url": "./welcome.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#06101d",
+  "theme_color": "#06101d",
+  "icons": [
+    {
+      "src": "assets png/ECLOX  BANNER FOR PLAYSTORE.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets png/ECLOX  BANNER FOR PLAYSTORE.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

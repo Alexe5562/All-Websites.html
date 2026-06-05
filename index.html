@@ -1,331 +1,42 @@
-<!doctype html>
-<html lang="en" class="h-full">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Groupe ASEK 2026</title>
-  <link rel="icon" href="https://yt3.googleusercontent.com/oO5n642XfMMxXvztx3GA2k5YMsUTf49VmyMmUl2wxfkYgM0ikh0ps7XkzB0iIvG0dMfLA9uk=s72-c-k-c0x00ffffff-no-rj" type="image/x-icon">
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Barlow:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-  <style>
-    img {
-        width: 100%;
-    }
-    html, body { height: 100%; margin: 0; }
-    * { box-sizing: border-box; }
-    .font-heading { font-family: 'Oswald', sans-serif; }
-    .font-body { font-family: 'Barlow', sans-serif; }
-    .court-pattern {
-      background-image: 
-        linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.7)),
-        repeating-linear-gradient(0deg, transparent, transparent 49%, rgba(59,130,246,0.15) 49%, rgba(59,130,246,0.15) 51%, transparent 51%),
-        repeating-linear-gradient(90deg, transparent, transparent 49%, rgba(255,107,0,0.08) 49%, rgba(255,107,0,0.08) 51%, transparent 51%);
-      background-size: 100% 100%, 80px 80px, 80px 80px;
-    }
-    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(255,107,0,0.2); }
-    .fade-in { animation: fadeIn 0.6s ease forwards; opacity: 0; }
-    .fade-in-delay-1 { animation-delay: 0.15s; }
-    .fade-in-delay-2 { animation-delay: 0.3s; }
-    .fade-in-delay-3 { animation-delay: 0.45s; }
-    .fade-in-delay-4 { animation-delay: 0.6s; }
-    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
-    .fade-in { transform: translateY(20px); }
-    @keyframes bounce-ball {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-    .bounce-ball { animation: bounce-ball 1.5s ease-in-out infinite; }
-    .nav-link { position: relative; }
-    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #3b82f6; transition: width 0.3s; }
-    .nav-link:hover::after { width: 100%; }
-    @keyframes slideInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .player-card { animation: slideInUp 0.5s ease forwards; }
-  </style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full font-body bg-neutral-950 text-white overflow-auto">
-  <div id="app" class="w-full min-h-full">
-   <!-- Navigation -->
-   <nav class="fixed top-0 left-0 right-0 z-50 bg-neutral-950/95 backdrop-blur-md border-b border-orange-500/20">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-heading font-bold text-lg">
-       <img alt="" class="ytCoreImageHost ytSpecAvatarShapeImage ytCoreImageFillParentHeight ytCoreImageFillParentWidth ytCoreImageContentModeScaleToFill ytCoreImageLoaded" src="https://yt3.googleusercontent.com/oO5n642XfMMxXvztx3GA2k5YMsUTf49VmyMmUl2wxfkYgM0ikh0ps7XkzB0iIvG0dMfLA9uk=s160-c-k-c0x00ffffff-no-rj">
-      </div>
-      <div>
-       <div class="font-heading font-bold text-lg leading-tight tracking-wide">
-        ASEK COURT
-       </div>
-       <div class="text-[10px] uppercase tracking-[0.3em] text-blue-400">
-        Asek Team
-       </div>
-      </div>
-     </div>
-     <div class="hidden md:flex items-center gap-8">
-      <a href="#roster" class="nav-link text-sm font-medium text-neutral-300 hover:text-white">Roster</a> <a href="#highlights" class="nav-link text-sm font-medium text-neutral-300 hover:text-white">Highlights</a> <a href="#about" class="nav-link text-sm font-medium text-neutral-300 hover:text-white">About</a> 
-     </div>
-    </div>
-   </nav><!-- Hero -->
-   <section class="court-pattern pt-32 pb-24 px-6 relative overflow-hidden">
-    <div class="absolute top-20 right-10 text-8xl opacity-10 bounce-ball">
-     🏀
-    </div>
-    <div class="max-w-7xl mx-auto text-center">
-     <h1 id="hero-title" class="font-heading text-6xl md:text-8xl font-bold tracking-tight fade-in" style="color:#3b82f6;">ASEK COURT</h1>
-     <p id="hero-subtitle" class="font-heading text-xl md:text-2xl text-neutral-300 mt-4 tracking-wide fade-in fade-in-delay-1">Elite Basketball Team</p>
-     <p id="hero-tagline" class="text-neutral-500 mt-3 text-lg italic fade-in fade-in-delay-2">Dominating the court since day one</p>
-     <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 fade-in fade-in-delay-3"><a href="#roster" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-heading font-semibold text-lg rounded-sm transition"> MEET THE TEAM <i data-lucide="users" class="w-5 h-5"></i> </a> <a href="#highlights" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-blue-600 text-blue-600 hover:bg-blue-600/10 font-heading font-semibold text-lg rounded-sm transition"> WATCH HIGHLIGHTS <i data-lucide="play" class="w-5 h-5"></i> </a> </a>
-     </div>
-    </div>
-   </section><!-- Roster -->
-   <section id="roster" class="py-20 px-6">
-    <div class="max-w-7xl mx-auto">
-     <h2 id="team-intro" class="font-heading text-4xl font-bold text-center mb-4 fade-in">MEET THE SQUAD</h2>
-     <p id="team-description" class="text-center text-neutral-500 mb-12 fade-in fade-in-delay-1">Elite athletes pushing boundaries</p>
-     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="roster-grid">
-     </div>
-    </div>
-   </section><!-- Highlights -->
-   <section id="highlights" class="py-20 px-6 bg-neutral-900/50">
-    <div class="max-w-7xl mx-auto">
-     <h2 class="font-heading text-4xl font-bold text-center mb-12 fade-in">GAME HIGHLIGHTS</h2>
-     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="card-hover group cursor-pointer">
-       <div class="relative h-64 bg-neutral-800 rounded-xl overflow-hidden flex items-center justify-center">
-        <div class="text-6xl">
-         <img src="https://www.nineforbrands.com.au/wp-content/uploads/2024/08/Paris-2024-Olympic-Games-_-Rohan-Browning-athletics-1024x576.png" alt="Olympic Games Paris 2024: Day 8 schedule highlights - Nine for Brands" class="" tabindex="0" aria-label="Olympic Games Paris 2024: Day 8 schedule highlights - Nine for Brands" role="button">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06101d" />
+    <title>ECLox</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="https://yt3.googleusercontent.com/eLhH2cQa1E5KteF1WOgiIsof7XLLkQ-L1lYUMt5mzJe3RX_5qNqJiKJRRYg28S0ukP5XfwTF0O8=s160-c-k-c0x00ffffff-no-rj">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="login-panel" id="loginPanel">
+        <div class="glass-card login-card">
+          <p class="eyebrow">ECLox Access</p>
+          <h1>Log in to enter your creative world</h1>
+          <p class="subtle">Enter any username and a 4+ character password to continue to the welcome page.</p>
+          <form id="loginForm" class="login-form">
+            <label>
+              Username
+              <input id="usernameInput" type="text" placeholder="Enter your username" required />
+            </label>
+            <label>
+              Password
+              <input id="passwordInput" type="password" placeholder="Enter your password" required />
+            </label>
+            <button type="submit" class="cta-button">Verify account</button>
+          </form>
+          <p id="loginMessage" class="login-message">Tip: any non-empty username and a 4+ character password will pass.</p>
         </div>
-        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
-         <i data-lucide="play" class="w-12 h-12"></i>
-        </div>
-       </div>
-       <div class="mt-4">
-        <h3 class="font-heading font-semibold text-lg">Championship Run 2024</h3>
-        <p class="text-neutral-500 text-sm mt-1">Watch our journey to victory</p>
-       </div>
-      </div>
-      <div class="card-hover group cursor-pointer">
-       <div class="relative h-64 bg-neutral-800 rounded-xl overflow-hidden flex items-center justify-center">
-        <div class="text-6xl">
-         <img src="https://i.ytimg.com/vi/J33UWdJseko/maxresdefault.jpg" alt="NBA Top 10 Dunks P1 - YouTube" class="" tabindex="0" aria-label="NBA Top 10 Dunks P1 - YouTube" role="button">
-        </div>
-        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
-         <i data-lucide="play" class="w-12 h-12"></i>
-        </div>
-       </div>
-       <div class="mt-4">
-        <h3 class="font-heading font-semibold text-lg">Top 10 Dunks</h3>
-        <p class="text-neutral-500 text-sm mt-1">Most explosive moments from the season</p>
-       </div>
-      </div>
-      <div class="card-hover group cursor-pointer">
-       <div class="relative h-64 bg-neutral-800 rounded-xl overflow-hidden flex items-center justify-center">
-        <div class="text-6xl">
-         <img src="https://primeformen.com/wp-content/uploads/2025/01/Basketball-Training-Challenges.jpg" alt="Effective Basketball Training Drills for All Skill Levels" class="" tabindex="0" aria-label="Effective Basketball Training Drills for All Skill Levels" role="button">
-        </div>
-        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
-         <i data-lucide="play" class="w-12 h-12"></i>
-        </div>
-       </div>
-       <div class="mt-4">
-        <h3 class="font-heading font-semibold text-lg">Training Sessions</h3>
-        <p class="text-neutral-500 text-sm mt-1">Behind the scenes look at our grind</p>
-       </div>
-      </div>
-      <div class="card-hover group cursor-pointer">
-       <div class="relative h-64 bg-neutral-800 rounded-xl overflow-hidden flex items-center justify-center">
-        <div class="text-6xl">
-         <img class="mimg" style="color: rgb(140, 83, 63);" height="200" width="301" src="https://th.bing.com/th/id/OIP.l7IATSVJgYlyluLpiIL1-AHaE8?w=301&amp;h=200&amp;c=7&amp;r=0&amp;o=7&amp;pid=1.7&amp;rm=3" alt="Image result for Trophy Moments" data-thhnrepbd="1" data-bm="177">
-        </div>
-        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
-         <i data-lucide="play" class="w-12 h-12"></i>
-        </div>
-       </div>
-       <div class="mt-4">
-        <h3 class="font-heading font-semibold text-lg">Trophy Moments</h3>
-        <p class="text-neutral-500 text-sm mt-1">Celebrating our victories together</p>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Stats -->
-   <section class="py-20 px-6">
-    <div class="max-w-7xl mx-auto">
-     <h2 id="stats-label" class="font-heading text-4xl font-bold text-center mb-12 fade-in">BY THE NUMBERS</h2>
-     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="text-center card-hover">
-       <div class="text-5xl font-heading font-bold text-blue-600 fade-in">
-        12
-       </div>
-       <div class="text-neutral-500 text-lg mt-2 fade-in fade-in-delay-1">
-        Games Won
-       </div>
-      </div>
-      <div class="text-center card-hover">
-       <div class="text-5xl font-heading font-bold text-blue-600 fade-in fade-in-delay-1">
-        20
-       </div>
-       <div class="text-neutral-500 text-lg mt-2 fade-in fade-in-delay-2">
-        Players
-       </div>
-      </div>
-      <div class="text-center card-hover">
-       <div class="text-5xl font-heading font-bold text-blue-600 fade-in fade-in-delay-2">
-        12
-       </div>
-       <div class="text-neutral-500 text-lg mt-2 fade-in fade-in-delay-3">
-        Championships
-       </div>
-      </div>
-      <div class="text-center card-hover">
-       <div class="text-5xl font-heading font-bold text-blue-600 fade-in fade-in-delay-3">
-        98%
-       </div>
-       <div class="text-neutral-500 text-lg mt-2 fade-in fade-in-delay-4">
-        Fan Love
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- About -->
-   <section id="about" class="py-20 px-6 bg-neutral-900/50">
-    <div class="max-w-4xl mx-auto text-center">
-     <h2 class="font-heading text-4xl font-bold mb-6">A propos de L'A.S.E.K</h2>
-     <p class="text-neutral-400 text-lg leading-relaxed">L'A.S.E.K, pour la localisation, il se trouve dans la ville de Kénitra, vous allez partir à ElHawzya, puis, dans le terrain le plus grand de moulay al hassan, visitez nous dans le terrain de basket !.</p>
-     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-      <div class="bg-neutral-800 rounded-lg p-6">
-       <div class="text-4xl mb-3">
-        <img src="https://visionsvcb.org/wp-content/uploads/2018/05/our-mission.png" alt="Mission Statement Logo" class="" tabindex="0" aria-label="Mission Statement Logo" role="button" data-bm="6">
-       </div>
-       <h3 class="font-heading font-semibold text-lg mb-2">Our Mission</h3>
-       <p class="text-neutral-500 text-sm">Dominate the court and inspire the next generation of ballers</p>
-      </div>
-      <div class="bg-neutral-800 rounded-lg p-6">
-       <div class="text-4xl mb-3">
-        <img src="https://i.pinimg.com/originals/28/e5/a1/28e5a196d2443a43d4165272b8ad2578.webp" alt="Black and white church graphics – Artofit" class="" tabindex="0" aria-label="Black and white church graphics – Artofit" role="button">
-       </div>
-       <h3 class="font-heading font-semibold text-lg mb-2">Brotherhood</h3>
-       <p class="text-neutral-500 text-sm">Unity and trust are the foundation of everything we do</p>
-      </div>
-      <div class="bg-neutral-800 rounded-lg p-6">
-       <div class="text-4xl mb-3">
-        <img src="https://static.vecteezy.com/system/resources/previews/035/395/926/original/excellence-concept-line-icon-simple-element-illustration-excellence-concept-outline-symbol-design-vector.jpg" alt="excellence concept line icon. Simple element illustration. excellence ..." class="" tabindex="0" aria-label="excellence concept line icon. Simple element illustration. excellence ..." role="button">
-       </div>
-       <h3 class="font-heading font-semibold text-lg mb-2">Excellence</h3>
-       <p class="text-neutral-500 text-sm">We push limits and set new standards every single day</p>
-      </div>
-     </div>
-    </div>
-   </section>
- <!-- Footer -->
-   <footer class="py-10 px-6 border-t border-neutral-800 text-center">
-    <div class="font-heading text-sm text-neutral-500">
-     © 2026 ASEK COURT | ASEK TEAM — All rights reserved
-    </div>
-   </footer>
-  </div>
-  <script>
-    const players = [
-      { number: 23, name: 'ALPHA', position: 'Guard', emoji: '🏀' },
-      { number: 7, name: 'STRIKER', position: 'Forward', emoji: '⚡' },
-      { number: 11, name: 'PHOENIX', position: 'Center', emoji: '🔥' },
-      { number: 5, name: 'SHADOW', position: 'Guard', emoji: '👤' },
-      { number: 42, name: 'TITAN', position: 'Forward', emoji: '💪' },
-      { number: 8, name: 'VORTEX', position: 'Center', emoji: '🌀' },
-    ];
-
-    const defaultConfig = {
-      hero_title: 'ASEK COURT',
-      hero_subtitle: 'Elite Basketball Team',
-      hero_tagline: 'Dominating the court since day one',
-      team_intro: 'MEET THE SQUAD',
-      team_description: 'Elite athletes pushing boundaries',
-      stats_label: 'BY THE NUMBERS',
-      background_color: '#000000',
-      surface_color: '#1a1a1a',
-      text_color: '#ffffff',
-      primary_action: '#3b82f6',
-      secondary_action: '#a3a3a3',
-      font_family: 'Oswald',
-      font_size: 16
-    };
-
-    function renderRoster() {
-      const grid = document.getElementById('roster-grid');
-      grid.innerHTML = players.map((p, i) => `
-        <div class="player-card card-hover bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden" style="animation-delay: ${i * 0.1}s">
-          <div class="h-56 bg-gradient-to-b from-blue-500/20 to-neutral-800 flex items-center justify-center text-7xl relative">
-            ${p.emoji}
-            <div class="absolute top-4 right-4 text-3xl font-heading font-bold text-blue-600">#${p.number}</div>
-          </div>
-          <div class="p-6">
-            <h3 class="font-heading font-bold text-2xl text-blue-600">${p.name}</h3>
-            <p class="text-neutral-400 text-sm mt-1">${p.position}</p>
-            <button class="mt-4 w-full py-2 bg-blue-600 hover:bg-blue-700 text-sm font-semibold rounded-sm transition">VIEW STATS</button>
-          </div>
-        </div>
-      `).join('');
-      lucide.createIcons();
-    }
-
-    function applyConfig(config) {
-      document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
-      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
-      document.getElementById('hero-tagline').textContent = config.hero_tagline || defaultConfig.hero_tagline;
-      document.getElementById('team-intro').textContent = config.team_intro || defaultConfig.team_intro;
-      document.getElementById('team-description').textContent = config.team_description || defaultConfig.team_description;
-      document.getElementById('stats-label').textContent = config.stats_label || defaultConfig.stats_label;
-      
-      const bg = config.background_color || defaultConfig.background_color;
-      const text = config.text_color || defaultConfig.text_color;
-      const primary = config.primary_action || defaultConfig.primary_action;
-      
-      document.body.style.backgroundColor = bg;
-      document.body.style.color = text;
-      document.getElementById('hero-title').style.color = primary;
-
-      const font = config.font_family || defaultConfig.font_family;
-      const baseSize = config.font_size || defaultConfig.font_size;
-      document.querySelectorAll('.font-heading, h1, h2, h3').forEach(el => el.style.fontFamily = `${font}, sans-serif`);
-      document.getElementById('hero-title').style.fontSize = `${baseSize * 4}px`;
-      document.getElementById('hero-subtitle').style.fontSize = `${baseSize * 1.4}px`;
-    }
-
-    window.elementSdk.init({
-      defaultConfig,
-      onConfigChange: async (config) => applyConfig(config),
-      mapToCapabilities: (config) => ({
-        recolorables: [
-          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-          { get: () => config.primary_action || defaultConfig.primary_action, set: (v) => { config.primary_action = v; window.elementSdk.setConfig({ primary_action: v }); } },
-          { get: () => config.secondary_action || defaultConfig.secondary_action, set: (v) => { config.secondary_action = v; window.elementSdk.setConfig({ secondary_action: v }); } },
-        ],
-        borderables: [],
-        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
-        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } },
-      }),
-      mapToEditPanelValues: (config) => new Map([
-        ['hero_title', config.hero_title || defaultConfig.hero_title],
-        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
-        ['hero_tagline', config.hero_tagline || defaultConfig.hero_tagline],
-        ['team_intro', config.team_intro || defaultConfig.team_intro],
-        ['team_description', config.team_description || defaultConfig.team_description],
-        ['stats_label', config.stats_label || defaultConfig.stats_label],
-      ])
-    });
-
-    renderRoster();
-    applyConfig(defaultConfig);
-    lucide.createIcons();
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f93ae04b2990141',t:'MTc3ODM2MDkwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
 </html>

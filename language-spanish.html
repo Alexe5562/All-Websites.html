@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECLox | Spanish Practice</title>
+    <link rel="icon" href="https://yt3.googleusercontent.com/eLhH2cQa1E5KteF1WOgiIsof7XLLkQ-L1lYUMt5mzJe3RX_5qNqJiKJRRYg28S0ukP5XfwTF0O8=s160-c-k-c0x00ffffff-no-rj">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="glass-card page-card learning-card">
+        <div class="nav-row"><a class="ghost-button" href="choose-language.html">Back to languages</a><span class="badge">Spanish</span></div>
+        <p class="eyebrow">Micro + typing</p>
+        <h1>Spanish learning sprint</h1>
+        <p class="subtle">Build real language skills with a quick lesson, 10 typing prompts, and 5 micro speaking tasks.</p>
+        <div class="practice-grid">
+          <article class="mini-card"><h3>Lesson focus</h3><p>Use everyday phrases and friendly conversation. Example: “Estoy aprendiendo español con ECLox.”</p></article>
+          <article class="mini-card"><h3>Typing</h3><p id="typingPrompt">Type: Estoy aprendiendo español.</p><input id="typingInput" class="game-answer" type="text" placeholder="Write the sentence" /><button class="cta-button" id="typingBtn" type="button">Check typing</button><p id="typingStatus" class="small-note">10 typing prompts left.</p></article>
+          <article class="mini-card"><h3>Micro</h3><p>Say: hola, gracias, amigo, feliz, practicar.</p><button class="cta-button" id="microBtn" type="button">Start micro voice</button><p id="microStatus" class="small-note">5 micro tasks left.</p></article>
+          <article class="mini-card"><h3>Progress</h3><p id="progressText">Typing score: 0 · Micro score: 0</p></article>
+        </div>
+      </section>
+    </main>
+    <script>
+      const typingPrompt = document.getElementById('typingPrompt');
+      const typingInput = document.getElementById('typingInput');
+      const typingBtn = document.getElementById('typingBtn');
+      const typingStatus = document.getElementById('typingStatus');
+      const microBtn = document.getElementById('microBtn');
+      const microStatus = document.getElementById('microStatus');
+      const progressText = document.getElementById('progressText');
+      const typingLines = ['Estoy aprendiendo español.', 'Me gusta practicar.', 'Quiero mejorar.', 'La lección es fácil.', 'Puedo hacerlo.'];
+      const microWords = ['hola', 'gracias', 'amigo', 'feliz', 'practicar'];
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      let typingIndex = 0;
+      let microCount = 5;
+      let typingScore = 0;
+      let microScore = 0;
+      let recognition = null;
+      let listening = false;
+      function nextTyping() { typingPrompt.textContent = 'Type: ' + typingLines[typingIndex % typingLines.length]; typingIndex += 1; typingStatus.textContent = `${Math.max(0, 10 - typingIndex)} typing prompts left.`; }
+      function updateProgress() { progressText.textContent = `Typing score: ${typingScore} · Micro score: ${microScore}`; }
+      function initMicroRecognition() {
+        if (!SpeechRecognition) {
+          microStatus.textContent = 'Micro voice is not supported in this browser. Use Chrome or Edge with microphone permission.';
+          return null;
+        }
+        recognition = new SpeechRecognition();
+        recognition.lang = 'es-ES';
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognition.onstart = () => { listening = true; microBtn.textContent = 'Listening...'; microStatus.textContent = 'Listening... say one of the suggested Spanish words.'; };
+        recognition.onresult = (event) => {
+          const transcript = event.results[event.resultIndex][0].transcript.trim();
+          const matchedWord = microWords.find((word) => transcript.toLowerCase().includes(word));
+          if (matchedWord) { microCount -= 1; microScore += 1; microStatus.textContent = `Heard: "${transcript}". Great! You said "${matchedWord}".`; }
+          else { microStatus.textContent = `Heard: "${transcript}". Try one of the suggested words.`; }
+          if (microCount <= 0) microStatus.textContent = 'Micro practice complete!';
+          updateProgress();
+        };
+        recognition.onerror = (event) => { listening = false; microBtn.textContent = 'Start micro voice'; const message = event.error === 'not-allowed' ? 'Micro access was blocked. Allow microphone permission and try again.' : `Micro detection error: ${event.error}`; microStatus.textContent = message; console.error('Micro detection error:', event.error); };
+        recognition.onend = () => { listening = false; microBtn.textContent = 'Start micro voice'; };
+        return recognition;
+      }
+      typingBtn.addEventListener('click', () => { const expected = typingLines[(typingIndex - 1) % typingLines.length].toLowerCase(); if (typingInput.value.trim().toLowerCase() === expected) { typingScore += 1; typingStatus.textContent = 'Perfect! Next sentence ready.'; nextTyping(); typingInput.value=''; } else { typingStatus.textContent = 'Try again — check your spelling.';} updateProgress(); });
+      microBtn.addEventListener('click', () => { if (microCount <= 0) { microStatus.textContent = 'Micro practice complete!'; return; } if (!recognition) recognition = initMicroRecognition(); if (!recognition) return; try { if (listening) { recognition.stop(); return; } recognition.start(); } catch (error) { listening = false; microBtn.textContent = 'Start micro voice'; microStatus.textContent = 'Micro detection failed to start. Please allow microphone access.'; console.error('Micro detection start failed:', error); } });
+      nextTyping();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECLox | Number Sprint</title>
+    <link rel="icon" href="https://yt3.googleusercontent.com/eLhH2cQa1E5KteF1WOgiIsof7XLLkQ-L1lYUMt5mzJe3RX_5qNqJiKJRRYg28S0ukP5XfwTF0O8=s160-c-k-c0x00ffffff-no-rj">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="glass-card page-card game-page-card">
+        <div class="nav-row"><a class="ghost-button" href="games.html">Back to games</a><span class="badge">Live game</span></div>
+        <p class="eyebrow">Real game</p>
+        <h1>Number Sprint</h1>
+        <p class="subtle">Solve the quick math challenge before the timer runs out.</p>
+        <div class="quiz-box" id="quizBox"></div>
+        <button class="cta-button" id="nextBtn" type="button">Next question</button>
+      </section>
+    </main>
+    <script>
+      const quizBox = document.getElementById('quizBox');
+      const nextBtn = document.getElementById('nextBtn');
+      let score = 0;
+      function askQuestion() {
+        const a = Math.floor(Math.random() * 9) + 1;
+        const b = Math.floor(Math.random() * 9) + 1;
+        const answer = a + b;
+        quizBox.innerHTML = `<div class="mini-game-card"><p class="eyebrow">Math round</p><h3>${a} + ${b} = ?</h3><p class="small-note">Choose the right answer from the options below.</p><div class="answer-row">${[answer, answer + 1, answer - 1].sort(() => Math.random() - 0.5).map((opt) => `<button class="game-option" type="button">${opt}</button>`).join('')}</div><p id="feedback" class="small-note">Score: ${score}</p></div>`;
+        quizBox.querySelectorAll('.game-option').forEach((button) => {
+          button.addEventListener('click', () => {
+            const feedback = document.getElementById('feedback');
+            if (Number(button.textContent) === answer) {
+              score += 1;
+              feedback.textContent = `Correct! Score: ${score}`;
+              feedback.style.color = '#67fbe7';
+            } else {
+              feedback.textContent = 'Not quite — try the next one.';
+              feedback.style.color = '#d7e3ff';
+            }
+          });
+        });
+      }
+      nextBtn.addEventListener('click', askQuestion);
+      askQuestion();
+    </script>
+  </body>
+</html>

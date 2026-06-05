@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECLox | Pixel Quest</title>
+    <link rel="icon" href="https://yt3.googleusercontent.com/eLhH2cQa1E5KteF1WOgiIsof7XLLkQ-L1lYUMt5mzJe3RX_5qNqJiKJRRYg28S0ukP5XfwTF0O8=s160-c-k-c0x00ffffff-no-rj">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="glass-card page-card game-page-card">
+        <div class="nav-row"><a class="ghost-button" href="games.html">Back to games</a><span class="badge">Live game</span></div>
+        <p class="eyebrow">Real game</p>
+        <h1>Pixel Quest</h1>
+        <p class="subtle">Collect stars by tapping the glowing pixel blocks.</p>
+        <div class="maze-grid" id="pixelGrid"></div>
+        <p class="small-note" id="pixelStatus">Click the glowing blocks to collect stars.</p>
+      </section>
+    </main>
+    <script>
+      const grid = document.getElementById('pixelGrid');
+      const status = document.getElementById('pixelStatus');
+      let score = 0;
+      function fillGrid() {
+        grid.innerHTML = '';
+        for (let i = 0; i < 16; i += 1) {
+          const block = document.createElement('button');
+          block.className = 'maze-tile';
+          block.textContent = '•';
+          block.addEventListener('click', () => {
+            if (block.classList.contains('active')) {
+              score += 1;
+              status.textContent = `Collected ${score} star(s)!`;
+              block.classList.remove('active');
+            } else {
+              status.textContent = 'Only the glowing pixels count.';
+            }
+          });
+          grid.appendChild(block);
+        }
+        const active = Math.floor(Math.random() * 16);
+        grid.children[active].classList.add('active');
+      }
+      fillGrid();
+      setInterval(fillGrid, 1400);
+    </script>
+  </body>
+</html>
